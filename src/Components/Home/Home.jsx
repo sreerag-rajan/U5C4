@@ -42,7 +42,7 @@ export const Home = () => {
   },[])
   return (
     <div className="homeContainer">
-      {meetups && meetups.filter((el) => {
+      {/* {meetups && meetups.filter((el) => {
         if(el.location ==user.location||"" && user.interests.includes(el.theme)){
           return true;                            
         }
@@ -62,7 +62,7 @@ export const Home = () => {
              <img src={el.image} alt="image(optional)" className="image(optional)" />
             </Link>
           );
-        })}
+        })} */}
 
       <div className="subscribedData">
         <div>
