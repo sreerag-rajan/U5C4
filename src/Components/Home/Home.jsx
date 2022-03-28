@@ -6,7 +6,7 @@ import { userLogin } from "../../Redux/Login/action";
 
 export const Home = () => {
   const [meetups, setMeetups] = useState([]);
-  const [subscribedMeetups, setSubscribedMeetups] = useState()
+  const [subscribedMeetups, setSubscribedMeetups] = useState([])
   const user = useSelector((store)=>store.auth.user);
   const dispatch = useDispatch()
 
@@ -42,7 +42,7 @@ export const Home = () => {
   },[])
   return (
     <div className="homeContainer">
-      {meetups&&meetups.filter((el) => {
+      {meetups && meetups.filter((el) => {
         if(el.location ==user.location||"" && user.interests.includes(el.theme)){
           return true;                            
         }
@@ -53,10 +53,7 @@ export const Home = () => {
           console.log(el)
           return (            
             <Link to={`/meetup/${el.id}`} key={el.id} className="events">
-              {/* add your children here (divs)
-              ex : title, theme, description, date, time, location, image(optional)
-              the classNames should be also : title, theme, description, date, time, location, image(optional)
-             */}
+              
              <h3 className="title">{el.title}</h3>
              <p className="theme">{el.theme}</p>
              <p className="description">{el.description}</p>
