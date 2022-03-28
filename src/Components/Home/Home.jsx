@@ -25,7 +25,11 @@ export const Home = () => {
     })
   },[])
   useEffect(()=>{
-    let x = [...meetups]
+    let x = [...meetups];
+    x = x.filter((el)=>{
+      if(el.location == location) return el;
+    })
+    setMeetups(x);
   },[location])
   useEffect(()=>{
     let sm = meetups.filter((el)=>{
