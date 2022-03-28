@@ -43,7 +43,7 @@ export const Home = () => {
   return (
     <div className="homeContainer">
       {meetups&&meetups.filter((el) => {
-        if(el.location ==user.location && user.interests.includes(el.theme)){
+        if(el.location ==user.location||"" && user.interests.includes(el.theme)){
           return true;                            
         }
         else{
