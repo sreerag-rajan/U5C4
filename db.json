@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "name": "sreerag",
+      "password": "12345",
+      "interests": [
+        "technology",
+        "movies"
+      ],
+      "image": "https://cdn.vox-cdn.com/thumbor/00awoM5IS2kFITs9546UyMSePBY=/0x0:2370x1574/1200x800/filters:focal(996x598:1374x976)/cdn.vox-cdn.com/uploads/chorus_image/image/69715362/Screen_Shot_2020_07_21_at_9.38.25_AM.0.png",
+      "subscribed": [],
+      "id": 1
+    }
+  ],
+  "meetups": [
+    {
+        "id": 1,
+        "title": "Saunter Strech",
+        "location": "bangalore",
+        "date": "2022-03-25",
+        "time": "23:59",
+        "theme": "technology",
+        "description": "Random Event",
+        "image": "https://images.unsplash.com/photo"
+      },
+      {
+        "id": 2,
+        "title": "Sau Strech",
+        "location": "delhi",
+        "date": "2022-03-25",
+        "time": "23:59",
+        "theme": "technology",
+        "description": "Random Event",
+        "image": "https://images.unsplash.com/photo"
+      }
+  ]
+}
