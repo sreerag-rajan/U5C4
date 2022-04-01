@@ -90,14 +90,15 @@ export const Home = () => {
           // console.log(el)
           return (            
             <Link to={`/meetup/${el.id}`} key={el.id} className="events">
-              <EventCard>              
-             <h3 className="title">{el.title}</h3>
-             <p className="theme">{el.theme}</p>
-             <p className="description">{el.description}</p>
-             <p className="date">{el.date}</p>
-             <p className="location">{el.location}</p>
-             <img src={el.image} alt="image(optional)" className="image(optional)" />
-             </EventCard>
+              {/* <EventCard>               */}
+             <div className="title">{el.title}</div>
+             <div className="theme">{el.theme}</div>
+             <div className="description">{el.description}</div>
+             <div className="date">{el.date}</div>
+             <div className="location">{el.location}</div>
+             <div className="time">{el.time}</div>
+             <div className="image(optional)"><img src={el.image} alt="image(optional)"  /></div>
+             {/* </EventCard> */}
             </Link>
           );
         })}
@@ -137,6 +138,7 @@ export const Home = () => {
                     <div className="theme">{el.theme}</div>
                     <div className="description">{el.description}</div>
                     <div className="date">{el.date}</div>
+                    <div className="time">{el.time}</div>
                     <div className="location">{el.location}</div>
                     <img src={el.image} alt="image(optional)" className="image(optional)" />
                     </EventCard>
