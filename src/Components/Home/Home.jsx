@@ -48,7 +48,7 @@ export const Home = () => {
       x = x.filter((el)=>{
       if(el.location == location) return el;
     })
-    setSubscribedMeetups(x);      
+    setUserMeetups(x);      
     })
 
     }
@@ -88,7 +88,7 @@ export const Home = () => {
   },[meetups])
   return (
     <div className="homeContainer">
-      {!user?<Main>
+      <Main>
       {userMeetups.map((el) => {
           // console.log(el)
           return (            
@@ -105,7 +105,8 @@ export const Home = () => {
             </Link>
           );
         })}
-        </Main>:<div className="subscribedData">
+        </Main>
+        <div className="subscribedData">
         <div>
           <select
             value={location}  // add value here
@@ -150,7 +151,7 @@ export const Home = () => {
 
         </div>
         </div>}
-      </div>}    
+      </div>   
     </div>
   );
 };
