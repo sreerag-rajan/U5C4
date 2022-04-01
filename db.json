@@ -39,6 +39,16 @@
       "theme": "technology",
       "description": "Random Event",
       "image": "https://images.unsplash.com/photo"
+    },
+    {
+      "title": "A greand event",
+      "location": "delhi",
+      "date": "2022-08-09",
+      "time": "12:34",
+      "theme": "technology",
+      "description": "a grand event not to be missed",
+      "image": "https://res.cloudinary.com/eventboost/image/upload/v1594282851/website/wp/eventboost-twitter-card-home.jpg",
+      "id": 3
     }
   ]
 }

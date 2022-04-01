@@ -25,7 +25,15 @@ export const AddMeetup = () => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     axios.post("http://localhost:8080/meetups",meetupFormData).then(({data})=>{
-      console.log(data)
+      setMeetupFormData({
+        title:'',
+        location:"",
+        date:"",
+        time:'',
+        theme:"",
+        description:"",
+        image:""
+      })
     })
   }
 

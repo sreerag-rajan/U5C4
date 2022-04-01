@@ -28,11 +28,18 @@ export const Home = () => {
 
   //useEffect for filtering location feature
   useEffect(()=>{
-    let x = [...meetups];
-    x = x.filter((el)=>{
+    if(location!==""){
+      axios.get("http://localhost:8080/meetups").then(({data})=>{
+      let x = [...data];
+      x = x.filter((el)=>{
       if(el.location == location) return el;
     })
-    setMeetups(x);
+    setMeetups(x);      
+    })
+
+    }
+    
+    
   },[location])
 
 //useEffect for getting subscribed meetups in a sorted manner
@@ -44,7 +51,7 @@ export const Home = () => {
     })
     sm = sm.sort((a,b)=>a.date-b.date);
     setSubscribedMeetups(sm);
-  },[])
+  },[meetups])
 
   //Useeffect for getting user specific interest and location meetups
   useEffect(()=>{
@@ -74,7 +81,7 @@ export const Home = () => {
              <p className="description">{el.description}</p>
              <p className="date">{el.date}</p>
              <p className="location">{el.location}</p>
-             <img src={el.image} alt="image(optional)" className="image(optional)" />
+             <img style={{width: "400px"}} src={el.image} alt="image(optional)" className="image(optional)" />
             </Link>
           );
         })}
@@ -83,7 +90,10 @@ export const Home = () => {
         <div>
           <select
             value={location}  // add value here
-            onChange={(e) => { setlocation(e.target.value) }}
+            onChange={(e) => { 
+              // console.log(e.target.value)
+              setlocation(e.target.value)
+             }}
           >
             <option value="">------</option>
             <option value="bangalore">Bangalore</option>
