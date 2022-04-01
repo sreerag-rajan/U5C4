@@ -13,13 +13,13 @@ export const Navbar = () => {
     margin: 20px 0;
   `
   return (
-    <Nav className="navbar">
+    <div className="navbar">
       <Link className="navbarHome" to={"/"}>
         Home
       </Link>
       <Link className="navbarLoginSignUp" to={"/loginsignup"}>
         Login/Sign Up
       </Link>
-    </Nav>
+    </div>
   );
 };
