@@ -58,13 +58,16 @@ export const Home = () => {
 
 //useEffect for getting subscribed meetups in a sorted manner
   useEffect(()=>{
-    let sm = meetups.filter((el)=>{
-      if(user.subscribed.includes(el.id)){
-        return el;
-      }
-    })
-    sm = sm.sort((a,b)=>a.date-b.date);
-    setSubscribedMeetups(sm);
+    if(user){
+      let sm = meetups.filter((el)=>{
+        if(user.subscribed.includes(el.id)){
+          return el;
+        }
+      })
+      sm = sm.sort((a,b)=>a.date-b.date);
+      setSubscribedMeetups(sm);
+    }
+    
   },[meetups])
 
   //Useeffect for getting user specific interest and location meetups
