@@ -43,15 +43,15 @@ export const Event = () => {
             return el;
           }
         })
-        axios.patch(`http://localhost:8080/users/${user.id}`,us).then(()=>{
-          console.log("subscribed");
+        axios.patch(`http://localhost:8080/users/${user.id}`,us).then(({data})=>{
+          localStorage.setItem("userLoginDetails",JSON.stringify(data));
         })
       }}>Unsubscribe</button>
       <button className="subscribe" onClick={() => {
         let us = {...user};
-        us.subsribed.push(event.id);
-        axios.patch(`http://localhost:8080/users/${user.id}`,us).then(()=>{
-          console.log("subscribed");
+        us.subscribed = [...us.subscribed,event.id];
+        axios.patch(`http://localhost:8080/users/${user.id}`,us).then(({data})=>{
+          localStorage.setItem("userLoginDetails",JSON.stringify(data));
         })
        }}>Subscribe</button>
     </div>

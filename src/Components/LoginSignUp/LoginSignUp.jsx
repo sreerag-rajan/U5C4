@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 import { userLogin, checkLoginDetails } from "../../Redux/Login/action";
 
 export const LoginSignUp = () => {
@@ -70,6 +69,7 @@ export const LoginSignUp = () => {
       password: signUpFormData.password,
       interests: interests,
       image: signUpFormData.image,
+      location: signUpFormData.location,
       subscribed: []
     }))
     axios.post("http://localhost:8080/users",{
@@ -77,9 +77,21 @@ export const LoginSignUp = () => {
       password: signUpFormData.password,
       interests: interests,
       image: signUpFormData.image,
+      location:signUpFormData.location,
       subscribed: []
-    }).then(({data})=>{
-      dispatch(userLogin(data));
+    }).then(()=>{
+      setSignUpFormData({
+        name:"",
+        password:"",
+        location:"",
+        technology:false,
+        food: false,
+        movies: false,
+        culture: false, 
+        art: false,
+        drama: false,
+        image: ""
+      })
     })
   }
 
@@ -87,11 +99,6 @@ export const LoginSignUp = () => {
     e.preventDefault();
     dispatch(checkLoginDetails(loginFormData))
   }
-
-  if(user){
-    return <Navigate to="/"/>
-  }
-  
   return (
     <div className="loginSignUp">
       <form className="signUp" onSubmit={(e) => { handleSignUpSubmit(e)}}>

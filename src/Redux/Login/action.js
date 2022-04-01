@@ -14,7 +14,7 @@ export const checkLoginDetails = (payload)=>(dispatch)=>{
                 return el;
             }
         })
-        console.log(user)
+        // console.log(user)
         if(user){
             localStorage.setItem("userLoginDetails",JSON.stringify(user[0]));
             dispatch(userLogin(user[0]));

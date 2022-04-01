@@ -6,7 +6,7 @@ const rootReducer = combineReducers({
 })
 
 const loggerMiddleWare = (store)=>(next)=>(action)=>{
-    console.log(typeof action)
+    // console.log(typeof action)
     if(typeof action === "function"){
         return action(store.dispatch)
     }
