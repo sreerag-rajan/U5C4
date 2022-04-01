@@ -8,6 +8,7 @@ import { userLogin } from "../../Redux/Login/action";
 
 export const Event = () => {
   const [event, setEvent] = useState();
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const user = useSelector((store)=>store.auth.user);
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -20,6 +21,16 @@ export const Event = () => {
       setEvent(data);
     })
   },[])
+
+  useEffect(()=>{
+    
+    if(user&&event&&user.subscribed.includes(event.id)){
+      setIsSubscribed(true);
+    }
+    else{
+      setIsSubscribed(false);
+    }
+  },[event]);
   return event?(
     <div className="eventContainer">
       {/* add your children here (divs)
@@ -29,31 +40,35 @@ export const Event = () => {
 
       {/* only one of the buttons should be visible depending on the status of subcription
       Hint : use conditional rendering */}
-      <h1 className="title">{event.title}</h1>
-      <p className="theme">{event.theme}</p>
-      <p className="description">{event.description}</p>
-      <p className="date">{event.date}</p>
-      <p className="time">{event.time}</p>
-      <p className="location">{event.location}</p>
-      <img src={event.image} alt="image" className="image(optional)" />
-      <button className="unsubscribe" onClick={()=>{
+      <div className="title">{event.title}</div>
+      <div className="theme">{event.theme}</div>
+      <div className="description">{event.description}</div>
+      <div className="date">{event.date}</div>
+      <div className="time">{event.time}</div>
+      <div className="location">{event.location}</div>
+      <div className="image(optional)"><img src={event.image} alt="image"  /></div>
+      
+      {isSubscribed ? <button className="unsubscribe" onClick={()=>{
         let us = {...user}
-        us.subcribed = us.subscribed.filter((el)=>{
-          if(el!==event.id){
+        let x = us.subscribed.filter((el)=>{
+          if(el!=event.id){
             return el;
           }
         })
+        us.subscribed = x;
+        console.log(us)
         axios.patch(`http://localhost:8080/users/${user.id}`,us).then(({data})=>{
           localStorage.setItem("userLoginDetails",JSON.stringify(data));
+          setIsSubscribed(false);
         })
-      }}>Unsubscribe</button>
-      <button className="subscribe" onClick={() => {
+      }}>Unsubscribe</button> : <button className="subscribe" onClick={() => {
         let us = {...user};
         us.subscribed = [...us.subscribed,event.id];
         axios.patch(`http://localhost:8080/users/${user.id}`,us).then(({data})=>{
           localStorage.setItem("userLoginDetails",JSON.stringify(data));
+          setIsSubscribed(true);
         })
-       }}>Subscribe</button>
+       }}>Subscribe</button>}
     </div>
   ):"";
 };

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { userLogin } from "../../Redux/Login/action";
+import styled from "styled-components"
 
 export const Home = () => {
   const [meetups, setMeetups] = useState([]);
@@ -10,8 +11,21 @@ export const Home = () => {
   const [userMeetups, setUserMeetups] = useState([])
   const user = useSelector((store)=>store.auth.user);
   const dispatch = useDispatch()
-
   const [location, setlocation] = useState("");
+
+  const Main = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+
+    & img{
+      width: 300px;
+    }
+  `
+  const EventCard = styled.div`
+   border: 1px solid black; 
+   height: 400px;
+  `
 
   
 
@@ -71,20 +85,23 @@ export const Home = () => {
   },[meetups])
   return (
     <div className="homeContainer">
+      <Main>
       {userMeetups.map((el) => {
           // console.log(el)
           return (            
             <Link to={`/meetup/${el.id}`} key={el.id} className="events">
-              
+              <EventCard>              
              <h3 className="title">{el.title}</h3>
              <p className="theme">{el.theme}</p>
              <p className="description">{el.description}</p>
              <p className="date">{el.date}</p>
              <p className="location">{el.location}</p>
-             <img style={{width: "400px"}} src={el.image} alt="image(optional)" className="image(optional)" />
+             <img src={el.image} alt="image(optional)" className="image(optional)" />
+             </EventCard>
             </Link>
           );
         })}
+        </Main>
 
       <div className="subscribedData">
         <div>
@@ -107,24 +124,26 @@ export const Home = () => {
         <h1>Subscribed Events</h1>
         <div className="subscribedEvents">
           {/* All user subcribed events should be displayed here in an ascending order of date */}
-
+          <Main>
           {subscribedMeetups && subscribedMeetups.map((el) => {
               return (
                 <Link to={`/meetup/${el.id}`} key={el.id} className="events">
                   {/* Each event should have these elements/children (divs):
                     ex : title, theme, description, date, time, location, image(optional)
                     the classNames should be also : title, theme, description, date, time, location, image(optional) */}
-                    <div className="subscribedMeetups">
+                    
+                    <EventCard className="subscribedMeetups">
                     <div className="title">{el.title}</div>
                     <div className="theme">{el.theme}</div>
                     <div className="description">{el.description}</div>
                     <div className="date">{el.date}</div>
                     <div className="location">{el.location}</div>
                     <img src={el.image} alt="image(optional)" className="image(optional)" />
-                    </div>
+                    </EventCard>
                 </Link>
               );
             })}
+            </Main>
 
         </div>
         </div>}
