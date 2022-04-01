@@ -136,7 +136,7 @@ export const Home = () => {
                     ex : title, theme, description, date, time, location, image(optional)
                     the classNames should be also : title, theme, description, date, time, location, image(optional) */}
                     
-                    <EventCard className="subscribedMeetups">
+                    <div className="subscribedMeetups">
                     <div className="title">{el.title}</div>
                     <div className="theme">{el.theme}</div>
                     <div className="description">{el.description}</div>
@@ -144,7 +144,7 @@ export const Home = () => {
                     <div className="time">{el.time}</div>
                     <div className="location">{el.location}</div>
                     <img src={el.image} alt="image(optional)" className="image(optional)" />
-                    </EventCard>
+                    </div>
                 </Link>
               );
             })}
